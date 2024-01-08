@@ -1,7 +1,7 @@
 # Electricity Price Prediction Project
 
 ## Overview
-This GitHub repository hosts the Electricity Price Prediction Project, an extensive analysis aimed at forecasting electricity prices using various data-driven methods.
+This GitHub repository hosts the Electricity Price Prediction Project (US), an extensive analysis aimed at forecasting electricity prices using various data-driven methods.
 
 ## Features
 - **Exploratory Data Analysis:** An in-depth examination of factors like electricity demand, coal consumption, and natural gas usage.
