@@ -21,7 +21,7 @@ The project aims to assist energy companies, policymakers, and consumers in maki
 2. Explore the Jupyter notebooks and R scripts for a detailed analytical journey.
 
 ## Detailed Report
-For a comprehensive understanding, refer to the [Electricity Price Prediction Report - Exploratory Data Analysis (PDF)](link-to-your-pdf-document).
+For a comprehensive understanding, refer to the [Electricity Price Prediction Report](link-to-your-pdf-document).
 
 ---
 
