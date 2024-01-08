@@ -1,7 +1,7 @@
 # Electricity Price Prediction Project
 
 ## Overview
-This GitHub repository hosts the Electricity Price Prediction Project (US), an extensive analysis aimed at forecasting electricity prices using various data-driven methods.
+Welcome to my GitHub repository! Dedicated to the Electricity Price Prediction in US - Analysis project, an in-depth study on factors influencing electricity prices, conducted as part of my MBA program at CHRIST (Deemed to be University), Lavasa Pune.
 
 ## Features
 - **Exploratory Data Analysis:** An in-depth examination of factors like electricity demand, coal consumption, and natural gas usage.
@@ -26,3 +26,5 @@ For a comprehensive understanding, refer to the [Electricity Price Prediction Re
 ---
 
 This repository represents a significant effort to predict electricity prices accurately and meaningfully. Dive into the data and discover how these variables interact and influence energy markets!
+
+Thank you for exploring this project!
