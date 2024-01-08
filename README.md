@@ -12,7 +12,7 @@ This GitHub repository hosts the Electricity Price Prediction Project (US), an e
 The project aims to assist energy companies, policymakers, and consumers in making informed decisions related to energy usage and costs.
 
 ## Technologies Used
-- **Data Analysis:** R, Python
+- **Data Analysis:** R
 - **Visualization Tools:** ggplot2, Matplotlib
 - **Statistical Testing:** ANOVA, t-tests
 
