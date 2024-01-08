@@ -1,0 +1,500 @@
+---
+title: "EDA - Electricity price prediction"
+author: "Ezhilan Wilson (22121128) & Athul S (22121011)"
+date: "09/05/2023"
+output: word_document
+---
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(shiny)
+library(dplyr)
+Ele <- read_excel("C:\\Users\\wezhi\\OneDrive\\Desktop\\YO\\SEM 3\\EDA - Final Project\elec_data.xlsx)
+view(Ele)
+```
+
+```{r}
+library(ggplot2)
+
+# Univariant analysis - Box Plot
+
+# Avg Elect Price
+boxplot(Ele$AVG_EPRICE, main = "Average Price")
+
+out1 <- boxplot(Ele$AVG_EPRICE, plot = FALSE)$out
+cleandat <- Ele$AVG_EPRICE[!Ele$AVG_EPRICE%in% out1]
+boxplot(cleandat,col="light green", main = "Average Price")
+
+# Elect Demand
+boxplot(Ele$E_DEMAND, main = "Demand")
+
+out2 <- boxplot(Ele$E_DEMAND, plot = FALSE)$out
+cleandat2 <- Ele$E_DEMAND[!Ele$E_DEMAND%in% out2]
+boxplot(cleandat2,col="light green", main = "Demand")
+
+# Coal Used
+boxplot(Ele$COAL_USED, main = "Coal Used")
+
+out3 <- boxplot(Ele$COAL_USED, plot = FALSE)$out
+cleandat3 <- Ele$COAL_USED[!Ele$COAL_USED%in% out3]
+boxplot(cleandat3,col="light green", main = "Coal Used")
+
+# Petrol Liquid Used
+boxplot(Ele$`PETROL_LIQUID USED`, main = "Pertol Liquid Used")
+
+out4 <- boxplot(Ele$`PETROL_LIQUID USED`, plot = FALSE)$out
+cleandat4 <- Ele$`PETROL_LIQUID USED`[!Ele$`PETROL_LIQUID USED`%in% out4]
+boxplot(cleandat4,col="light green", main = "Pertol Liquid Used")
+
+# Petrol Coke Used
+boxplot(Ele$`PETROL_COKE USED`, main = "Petrol Coke Used")
+
+out5 <- boxplot(Ele$`PETROL_COKE USED`, plot = FALSE)$out
+cleandat5 <- Ele$`PETROL_COKE USED`[!Ele$`PETROL_COKE USED`%in% out5]
+boxplot(cleandat5,col="light green", main = "Petrol Coke Used")
+
+# Natural Gas Used
+boxplot(Ele$`NATURAL_GAS USED`, main = "Natural Gas Used")
+
+out6 <- boxplot(Ele$`NATURAL_GAS USED`, plot = FALSE)$out
+cleandat6 <- Ele$`NATURAL_GAS USED`[!Ele$`NATURAL_GAS USED`%in% out6]
+boxplot(cleandat6,col="light green", main = "Natural Gas Used")
+
+# CPI
+boxplot(Ele$CPI, main = "CPI")
+
+out7 <- boxplot(Ele$CPI, plot = FALSE)$out
+cleandat7 <- Ele$CPI[!Ele$CPI%in% out7]
+boxplot(cleandat7,col="light green", main = "CPI")
+
+# S&P500
+boxplot(Ele$`S&P 500`, main = "S&P 500")
+
+out8 <- boxplot(Ele$`S&P 500`, plot = FALSE)$out
+cleandat8 <- Ele$`S&P 500`[!Ele$`S&P 500`%in% out8]
+boxplot(cleandat8,col="light green", main = "S&P 500")
+
+# VIX
+boxplot(Ele$VIX, main = "VIX")
+
+out9 <- boxplot(Ele$VIX, plot = FALSE)$out
+cleandat9 <- Ele$VIX[!Ele$VIX%in% out9]
+boxplot(cleandat9,col="light green", main = "VIX")
+
+# Avg Weather
+boxplot(Ele$AVG_WEATHER, main = "Average Weather")
+
+out10 <- boxplot(Ele$AVG_WEATHER, plot = FALSE)$out
+cleandat10 <- Ele$AVG_WEATHER[!Ele$AVG_WEATHER%in% out10]
+boxplot(cleandat10,col="light green", main = "Average Weather")
+
+# Crude Oil Price
+boxplot(Ele$`CRUDE_OIL PRICE`, main = "Crude Oil Price")
+
+out12 <- boxplot(Ele$`CRUDE_OIL PRICE`, plot = FALSE)$out
+cleandat12 <- Ele$`CRUDE_OIL PRICE`[!Ele$`CRUDE_OIL PRICE`%in% out12]
+boxplot(cleandat12,col="light green", main = "Crude Oil Price")
+
+# Heating Oil Price
+boxplot(Ele$`HEATING_OIL PRICE`, main = "Heating Oil Price")
+
+out13 <- boxplot(Ele$`HEATING_OIL PRICE`, plot = FALSE)$out
+cleandat13 <- Ele$`HEATING_OIL PRICE`[!Ele$`HEATING_OIL PRICE`%in% out13]
+boxplot(cleandat13,col="light green", main = "Heating Oil Price")
+
+
+```
+
+
+```{r}
+
+# Univariant analysis - Histogram
+
+
+ggplot(data = Ele, aes(x = AVG_EPRICE)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of Price", x = "Price", y = "Frequency")
+
+# Demand
+ggplot(data = Ele, aes(x = E_DEMAND)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of Demand", x = "Demand", y = "Frequency")
+
+# Coal Used 
+ggplot(data = Ele, aes(x = COAL_USED)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of Coal Used", x = "Coal Used", y = "Frequency")
+
+# Petrol Liquid Used
+ggplot(data = Ele, aes(x = `PETROL_LIQUID USED`)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of Petrol Liquid Used", x = "Petrol Liquid Used", y = "Frequency")
+
+# Petrol Coke Used
+ggplot(data = Ele, aes(x = `PETROL_COKE USED`)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of Petrol Coke Used", x = "Petrol Coke Used", y = "Frequency")
+
+# Natural Gas Used
+ggplot(data = Ele, aes(x = `NATURAL_GAS USED`)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of Natural Gas Used", x = "Natural Gas Used", y = "Frequency")
+
+# CPI
+ggplot(data = Ele, aes(x = CPI)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of CPI", x = "CPI", y = "Frequency")
+
+# S&P 500
+ggplot(data = Ele, aes(x = `S&P 500`)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of `S&P 500`", x = "`S&P 500`", y = "Frequency")
+
+# VIX
+ggplot(data = Ele, aes(x = VIX)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of VIX", x = "VIX", y = "Frequency")
+
+# Avg Weather
+ggplot(data = Ele, aes(x = AVG_WEATHER)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of AVG_WEATHER", x = "AVG_WEATHER", y = "Frequency")
+
+# Crude Oil Price
+ggplot(data = Ele, aes(x = `CRUDE_OIL PRICE`)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of `CRUDE_OIL PRICE`", x = "A`CRUDE_OIL PRICE`", y = "Frequency")
+
+# Heating oil Price
+ggplot(data = Ele, aes(x = `HEATING_OIL PRICE`)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "lightblue") +
+  labs(title = "Distribution of `HEATING_OIL PRICE`", x = "`HEATING_OIL PRICE`", y = "Frequency")
+
+```
+
+
+```{r}
+print("AVERAGE PRICE")
+summary(Ele$AVG_EPRICE)
+mode_price = names(sort(table(Ele$AVG_EPRICE), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$AVG_EPRICE)
+sd(Ele$AVG_EPRICE)
+range(Ele$AVG_EPRICE)
+
+print("DEMAND")
+summary(Ele$E_DEMAND)
+mode_price = names(sort(table(Ele$E_DEMAND), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$E_DEMAND)
+sd(Ele$E_DEMAND)
+range(Ele$E_DEMAND)
+
+print("COAL USED")
+summary(Ele$COAL_USED)
+mode_price = names(sort(table(Ele$COAL_USED), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$COAL_USED)
+sd(Ele$COAL_USED)
+range(Ele$COAL_USED)
+
+print("PETROL LIQUID USED")
+summary(Ele$`PETROL_LIQUID USED`)
+mode_price = names(sort(table(Ele$`PETROL_LIQUID USED`), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$`PETROL_LIQUID USED`)
+sd(Ele$`PETROL_LIQUID USED`)
+range(Ele$`PETROL_LIQUID USED`)
+
+print("PETROL COKE USED")
+summary(Ele$`PETROL_COKE USED`)
+mode_price = names(sort(table(Ele$`PETROL_COKE USED`), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$`PETROL_COKE USED`)
+sd(Ele$`PETROL_COKE USED`)
+range(Ele$`PETROL_COKE USED`)
+
+print("NATURAL GAS  USED")
+summary(Ele$`NATURAL_GAS USED`)
+mode_price = names(sort(table(Ele$`NATURAL_GAS USED`), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$`NATURAL_GAS USED`)
+sd(Ele$`NATURAL_GAS USED`)
+range(Ele$`NATURAL_GAS USED`)
+
+print("CPI")
+summary(Ele$CPI)
+mode_price = names(sort(table(Ele$CPI), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$CPI)
+sd(Ele$CPI)
+range(Ele$CPI)
+
+print("S&P 500")
+summary(Ele$`S&P 500`)
+mode_price = names(sort(table(Ele$`S&P 500`), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$`S&P 500`)
+sd(Ele$`S&P 500`)
+range(Ele$`S&P 500`)
+
+print("VIX")
+summary(Ele$VIX)
+mode_price = names(sort(table(Ele$VIX), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$VIX)
+sd(Ele$VIX)
+range(Ele$VIX)
+
+print("AVERAGE WEATHER")
+summary(Ele$AVG_WEATHER)
+mode_price = names(sort(table(Ele$AVG_WEATHER), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$AVG_WEATHER)
+sd(Ele$AVG_WEATHER)
+range(Ele$AVG_WEATHER)
+
+print("CRUDE OIL PRICE")
+summary(Ele$`CRUDE_OIL PRICE`)
+mode_price = names(sort(table(Ele$`CRUDE_OIL PRICE`), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$`CRUDE_OIL PRICE`)
+sd(Ele$`CRUDE_OIL PRICE`)
+range(Ele$`CRUDE_OIL PRICE`)
+
+print("HEATING OIL PRICE")
+summary(Ele$`HEATING_OIL PRICE`)
+mode_price = names(sort(table(Ele$`HEATING_OIL PRICE`), decreasing = TRUE)[1])
+print(mode_price)
+var(Ele$`HEATING_OIL PRICE`)
+sd(Ele$`HEATING_OIL PRICE`)
+range(Ele$`HEATING_OIL PRICE`)
+
+```
+
+```{r}
+# Bivariant analysis - Line graph
+
+
+ggplot(Ele, aes(x = E_DEMAND, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between E_DEMAND and Price")
+
+ggplot(Ele, aes(x = COAL_USED, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between COAL_USED and Price")
+
+ggplot(Ele, aes(x = `PETROL_LIQUID USED`, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between PETROL_LIQUID USED and Price")
+
+ggplot(Ele, aes(x = `PETROL_COKE USED`, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between PETROL_COKE USED and Price")
+
+ggplot(Ele, aes(x = `NATURAL_GAS USED`, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between NATURAL_GAS USED and Price")
+
+ggplot(Ele, aes(x = CPI, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between CPI and Price")
+
+ggplot(Ele, aes(x = `S&P 500`, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between S&P 500 and Price")
+
+ggplot(Ele, aes(x = VIX, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between VIX and Price")
+
+ggplot(Ele, aes(x = AVG_WEATHER, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between AVG_WEATHER and Price")
+
+ggplot(Ele, aes(x = `CRUDE_OIL PRICE`, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between Crude Oil Price and Price")
+
+ggplot(Ele, aes(x = `HEATING_OIL PRICE`, y = AVG_EPRICE)) +
+  geom_point() +
+  labs(title = "Relationship Between Heating Oil Price and Price")
+```
+
+
+```{r}
+#underlying hypothesis - Refer in report 
+```
+
+```{r}
+# Multicollinearity analysis
+
+multico = lm(AVG_EPRICE ~., data = Ele)
+summary(multico)
+
+cor(Ele[,c("AVG_EPRICE", "COAL_USED", "PETROL_LIQUID USED", "PETROL_COKE USED", "NATURAL_GAS USED", "CPI", "S&P 500", "VIX", "AVG_WEATHER", "CRUDE_OIL PRICE", "HEATING_OIL PRICE")])
+
+pairs(Ele[,c("AVG_EPRICE", "COAL_USED", "PETROL_LIQUID USED", "PETROL_COKE USED", "NATURAL_GAS USED", "CPI", "S&P 500", "VIX", "AVG_WEATHER", "CRUDE_OIL PRICE", "HEATING_OIL PRICE")])
+
+library(car)
+vif(multico)
+
+```
+
+
+```{r}
+# Filtered Model
+
+filteredEle = Ele  %>% select(-c(E_DEMAND, COAL_USED, CPI, `S&P 500`, `CRUDE_OIL PRICE`, `HEATING_OIL PRICE`))
+print(filteredEle)
+
+filteredEle_lm = lm(AVG_EPRICE~., data = filteredEle)
+summary(filteredEle_lm)
+```
+
+
+```{r}
+# Modelling Method Applied (log, square root, boxcox)
+
+
+#log transformation
+
+
+# Perform a log transformation of the AVG_EPRICE variable
+filteredEle$AVG_EPRICE_log <- log(filteredEle$AVG_EPRICE)
+
+
+# Fit a linear regression model
+filteredEle_lm_log <- lm(AVG_EPRICE_log ~ `PETROL_LIQUID USED`+ `PETROL_COKE USED`+ `NATURAL_GAS USED`+ VIX+ AVG_WEATHER, data = filteredEle)
+
+# Display a summary of the regression results
+summary(filteredEle_lm_log)
+
+
+```
+
+```{r}
+# square root transformation
+
+# Perform a sqrt transformation of the AVG_EPRICE variable
+filteredEle$AVG_EPRICE_sqrt <- sqrt(filteredEle$AVG_EPRICE)
+
+
+# Fit a linear regression model
+filteredEle_lm_sqrt <- lm(AVG_EPRICE_sqrt ~ `PETROL_LIQUID USED`+ `PETROL_COKE USED`+ `NATURAL_GAS USED`+ VIX+ AVG_WEATHER, data = filteredEle)
+
+# Display a summary of the regression results
+summary(filteredEle_lm_sqrt)
+
+```
+
+```{r}
+
+# Perform a boxcox transformation of the AVG_EPRICE variable
+
+library(MASS)
+boxcox_model <- lm(AVG_EPRICE ~ `PETROL_LIQUID USED`+ `PETROL_COKE USED`+ `NATURAL_GAS USED`+ VIX+ AVG_WEATHER, data = filteredEle)
+
+lambda <- boxcox(boxcox_model)
+summary(boxcox_model)
+
+```
+
+```{r}
+# residual value
+
+# Predicted values
+predicted_values <- predict(filteredEle_lm_log)
+
+# Residuals
+residuals <- filteredEle$AVG_EPRICE_log - predicted_values
+
+# Plot residuals
+plot(residuals ~ predicted_values, data = filteredEle, 
+     xlab = "Predicted values", ylab = "Residuals", main = "Residual Plot")
+
+# Check if the plot device is still open
+abline(lm(residuals ~ predicted_values, data = filteredEle), col = "red")
+
+plot(filteredEle_lm_log, which = 1) # Residuals vs Fitted
+plot(filteredEle_lm_log, which = 2) # Normal Q-Q plot
+plot(filteredEle_lm_log, which = 3) # Scale-Location plot
+plot(filteredEle_lm_log, which = 4) # Residuals vs Leverage
+
+```
+
+```{r}
+# residual value for sqrt
+
+# Predicted values
+predicted_values <- predict(filteredEle_lm_sqrt)
+predicted_values
+
+# Residuals
+residuals <- filteredEle$AVG_EPRICE_sqrt - predicted_values
+residuals
+
+# Plot residuals
+plot(residuals ~ predicted_values, data = filteredEle, 
+     xlab = "Predicted values", ylab = "Residuals", main = "Residual Plot")
+
+# Check if the plot device is still open
+abline(lm(residuals ~ predicted_values, data = filteredEle), col = "red")
+
+plot(filteredEle_lm_sqrt, which = 1) # Residuals vs Fitted
+plot(filteredEle_lm_sqrt, which = 2) # Normal Q-Q plot
+plot(filteredEle_lm_sqrt, which = 3) # Scale-Location plot
+plot(filteredEle_lm_sqrt, which = 4) # Residuals vs Leverage
+```
+
+```{r}
+#boxcox
+# AVG_EPRICE = 8.770 + 6.026e-05 * PETROL_LIQUID USED - 1.497e-03 * PETROL_COKE USED + 1.956e-06 * NATURAL_GAS USED + 1.635e-02 * VIX + 8.380e-03 * AVG_WEATHER
+
+```
+
+# shinny app
+## using boxcox transformation
+
+```{r}
+library(shiny)
+library(tidyverse)
+library(magrittr)
+
+# Define UI
+ui <- fluidPage(
+  h1("Price Predictor"),
+  br(),
+  fluidRow(
+    column(6, numericInput("petrol_liquid_used", label = "Petrol Liquid Used", value = 500, min = 0, max = 1000)),
+    column(6, numericInput("petrol_coke_used", label = "Petrol Coke Used", value = 500, min = 0, max = 1000))
+  ),
+  fluidRow(
+    column(6, numericInput("natural_gas_used", label = "Natural Gas Used", value = 500, min = 0, max = 1000)),
+    column(6, numericInput("vix", label = "VIX", value = 50, min = 0, max = 100))
+  ),
+  fluidRow(
+    column(6, numericInput("avg_weather", label = "Avg Weather", value = 15, min = -20, max = 50))
+  ),
+  br(),
+  actionButton("submit", "Submit"),
+  br(),
+  verbatimTextOutput("predicted_price")
+)
+
+# Define server
+server <- function(input, output) {
+  output$predicted_price <- renderPrint({
+    req(input$submit)
+    avg_eprice <- 8.770 + 6.026e-05 * input$petrol_liquid_used - 1.497e-03 * input$petrol_coke_used + 1.956e-06 * input$natural_gas_used + 1.635e-02 * input$vix + 8.380e-03 * input$avg_weather
+    paste("Predicted Price: $", round(avg_eprice, 2))
+  })
+}
+
+# Run the app
+shinyApp(ui = ui, server = server)
+
+```
+
+
